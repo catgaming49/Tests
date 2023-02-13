@@ -12,7 +12,7 @@ def encrypt(filepath,passcode=0):
         print("Attempting to create new directory at: "+currentDir)
         #os.makedirs(currentDir+"\ok",511,True)#+"\output")
         #if not os.path.isdir(currentDir):
-        os.makedirs(currentDir+r"\ok")
+        os.makedirs(currentDir+r"\output")
     except OSError as e:
         print("Couldnt create new output directory: ",e)
     #### Encryption part ####
