@@ -1,5 +1,4 @@
 import os
-import readchar
 currentDir = os.path.realpath(os.path.dirname(__file__))
 delimiter = '|' # could use = u"\u2063" for non visible delimiter
 def encrypt(filepath,passcode=0):
@@ -90,6 +89,4 @@ elif "decrypt" in inp.lower():
 else:
     print("Unrecognized command")
 
-#input("Press enter to exit")
-print("Press Any Key To Exit")
-readchar.readchar()
+input("Press enter to exit")
