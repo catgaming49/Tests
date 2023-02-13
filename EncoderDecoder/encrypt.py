@@ -1,11 +1,18 @@
 import os
+#os.chdir
 currentDir = os.path.realpath(os.path.dirname(__file__))
 delimiter = '|' # could use = u"\u2063" for non visible delimiter
+print(currentDir)
 def encrypt(filepath,passcode=0):
+    filepath = os.path.realpath(filepath)
     passcode = int(passcode)
     encryptedtext = []
+    
     try:
-        os.mkdir(currentDir+r"\output")
+        print("Attempting to create new directory at: "+currentDir)
+        #os.makedirs(currentDir+"\ok",511,True)#+"\output")
+        #if not os.path.isdir(currentDir):
+        os.makedirs(currentDir+r"\ok")
     except OSError as e:
         print("Couldnt create new output directory: ",e)
     #### Encryption part ####
@@ -28,7 +35,6 @@ def encrypt(filepath,passcode=0):
         outputfile.write(delimiter.join(encryptedtext))
     except Exception as e:
         print("Could not output encrypted file: ",e)
-
 
 def decrypt(filepath,passcode=0):
     passcode = int(passcode)
