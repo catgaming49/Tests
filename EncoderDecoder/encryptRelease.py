@@ -1,23 +1,21 @@
 import os
-#os.chdir
 currentDir = os.path.realpath(os.path.dirname(__file__))
-delimiter = '|' # could use = u"\u2063" for non visible delimiter
+delimiter = '%'
 print(currentDir)
 def encrypt(filepath,passcode=0):
+    print(filepath)
     filepath = os.path.realpath(filepath)
     passcode = int(passcode)
     encryptedtext = []
     
     try:
         print("Attempting to create new directory at: "+currentDir)
-        #os.makedirs(currentDir+"\ok",511,True)#+"\output")
-        #if not os.path.isdir(currentDir):
         os.makedirs(currentDir+r"\output")
     except OSError as e:
         print("Couldnt create new output directory: ",e)
     #### Encryption part ####
     try:
-        file = open(file=filepath,mode="r")
+        file = open(file=filepath,mode="r",encoding="latin-1")
         read = file.read()
         if passcode > 0:
             for i in read:
@@ -45,7 +43,7 @@ def decrypt(filepath,passcode=0):
         print("Couldnt create output directory: ",e)
     #### Decryption part ####
     try:
-        encryptedfile = open(file=filepath,mode="r")
+        encryptedfile = open(file=filepath,mode="r",encoding="latin-1")
         read = encryptedfile.read().split(sep=delimiter)
         if passcode > 0:
             for i in read:
@@ -66,11 +64,14 @@ def decrypt(filepath,passcode=0):
 
 print("Encrypt: encrypt filepath optional:passcode")
 print("Decrypt: decrypt filepath optional:passcode")
+print("If a filename has spaces in it example=C:/new file replace the space character with an asterisk* example=C:/new*file")
 inp = input().replace('"', '')
+print(inp)
 args = []
 if "encrypt" in inp.lower():
     for i in range(1,len(inp.split())):
        args.append(inp.split()[i])
+    args[0] = args[0].replace("*"," ")
     try:
         if len(args) == 1:
             encrypt(args[0])
