@@ -1,7 +1,6 @@
 import os
 currentDir = os.path.realpath(os.path.dirname(__file__))
 delimiter = '%'
-print(currentDir)
 def encrypt(filepath,passcode=0):
     print(filepath)
     filepath = os.path.realpath(filepath)
@@ -62,6 +61,7 @@ def decrypt(filepath,passcode=0):
     except Exception as e:
         print(e)
 
+print(r"For now this tool only supports files which contain valid text such as alphanumerical characters, it also should not be used to encrypt information which need to be secure as this is encryption could easily be reversed")
 print("Encrypt: encrypt filepath optional:passcode")
 print("Decrypt: decrypt filepath optional:passcode")
 print("If a filename has spaces in it example=C:/new file replace the space character with an asterisk* example=C:/new*file")
